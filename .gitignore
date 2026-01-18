@@ -1,0 +1,26 @@
+# Compiled objects
+*.o
+*.obj
+
+# Executables
+bmi323_i2c
+bmm350_i2c
+bmp390_i2c
+
+# Calibration files
+bmm350_cal.txt
+
+# Temporary files
+*.tmp
+*.tmp.*
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
